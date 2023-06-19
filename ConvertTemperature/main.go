@@ -31,13 +31,6 @@ func convertHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func convertTemperature(temperature string, unit string) Temperature {
-	// Implementa las conversiones de temperatura aquí según tus necesidades.
-	// Puedes utilizar fórmulas o funciones específicas de Go para realizar las conversiones.
-
-	// Por ejemplo:
-	// Si la unidad de origen es Celsius, realiza las conversiones correspondientes.
-	// Si la unidad de origen es Fahrenheit, realiza las conversiones correspondientes.
-	// Si la unidad de origen es Kelvin, realiza las conversiones correspondientes.
 
 	// Retorna una estructura Temperature con los valores convertidos.
 	return Temperature{
