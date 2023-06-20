@@ -1,6 +1,6 @@
 package main
 
-//Funciones de conversion de temperaturas
+// Funciones de conversion de temperaturas
 
 func celsiusToFahrenheit(celsius float64) float64 {
 	return (celsius * 9 / 5) + 32
