@@ -6,15 +6,21 @@ import (
 )
 
 type jsonResponse struct {
-	Error bool `json:"error"`
+	Error   bool   `json:"error"`
 	Message string `json:"message"`
-	Data any `json:"data,omitempty"`
+	Data    any    `json:"data,omitempty"`
 }
 
 func (app *Config) Broker(w http.ResponseWriter, r *http.Request) {
+
 	payload := jsonResponse{
-		Error: false,
-		Message: "Hit the broker",
+		Error:   false,
+		Message: "Request received from the broker",
+	}
+
+	if payload.Error {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
 	}
 
 	out, _ := json.MarshalIndent(payload, "", "\t")

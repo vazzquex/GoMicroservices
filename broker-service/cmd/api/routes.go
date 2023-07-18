@@ -13,7 +13,7 @@ func (app *Config) routes() *gin.Engine {
 
 	// specify who is allowed to connect
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"https://*", "http://*"}
+	config.AllowOrigins = []string{"*"}
 	config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"}
 	config.AllowHeaders = []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"}
 	config.ExposeHeaders = []string{"Link"}
