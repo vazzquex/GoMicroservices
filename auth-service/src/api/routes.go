@@ -21,6 +21,19 @@ func (app *Config) routes() http.Handler {
 	config.MaxAge = 300
 	router.Use(cors.New(config))
 
+	router.Use(func(c *gin.Context) {
+		if c.Request.URL.Path == "/ping" && c.Request.Method == "GET" {
+			c.JSON(http.StatusOK, gin.H{"message": "pong"})
+			c.Abort()
+			return
+		}
+		c.Next()
+	})
+
+	router.POST("/auth", func(c *gin.Context) {
+		app.Auth()
+	})
+
 	return router
 
 }
