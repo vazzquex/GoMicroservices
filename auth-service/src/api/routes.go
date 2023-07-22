@@ -30,8 +30,8 @@ func (app *Config) routes() http.Handler {
 		c.Next()
 	})
 
-	router.POST("/auth", func(c *gin.Context) {
-		app.Auth()
+	router.POST("/authenticate", func(c *gin.Context) {
+		app.Auth(c.Writer, c.Request)
 	})
 
 	return router

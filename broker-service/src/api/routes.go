@@ -32,5 +32,9 @@ func (app *Config) routes() *gin.Engine {
 		log.Print("Pong")
 	})
 
+	router.POST("/handle", func(c *gin.Context) {
+		app.HandleSubmission(c.Writer, c.Request)
+	})
+
 	return router
 }

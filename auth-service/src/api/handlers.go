@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func (app *Config) Auth() (w http.ResponseWriter, r *http.Request) {
+func (app *Config) Auth(w http.ResponseWriter, r *http.Request) {
 	var requestPayload struct {
 		Email    string `json:"email"`
 		Password string `json:"password"`
@@ -18,16 +18,16 @@ func (app *Config) Auth() (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// validate the user with db
+	// validate the user against the database
 	user, err := app.Models.User.GetByEmail(requestPayload.Email)
 	if err != nil {
-		app.errorJSON(w, errors.New("Invalid Credentials"), http.StatusBadRequest)
+		app.errorJSON(w, errors.New("invalid credentials"), http.StatusBadRequest)
 		return
 	}
 
 	valid, err := user.PasswordMatches(requestPayload.Password)
 	if err != nil || !valid {
-		app.errorJSON(w, errors.New("Invalid Credentials"), http.StatusBadRequest)
+		app.errorJSON(w, errors.New("invalid credentials"), http.StatusBadRequest)
 		return
 	}
 
@@ -38,7 +38,5 @@ func (app *Config) Auth() (w http.ResponseWriter, r *http.Request) {
 	}
 
 	app.writeJSON(w, http.StatusAccepted, payload)
-
-	return
 
 }

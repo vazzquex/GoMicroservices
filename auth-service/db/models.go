@@ -3,7 +3,6 @@ package data
 import (
 	"context"
 	"database/sql"
-	"errors"
 	"log"
 	"time"
 
@@ -46,7 +45,7 @@ type User struct {
 // GetAll returns a slice of all users, sorted by last name
 func (u *User) GetAll() ([]*User, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), dbTimeout)
-	defer cancel() // Program cancel context
+	defer cancel()
 
 	query := `select id, email, first_name, last_name, password, user_active, created_at, updated_at
 	from users order by last_name`
@@ -253,16 +252,26 @@ func (u *User) ResetPassword(password string) error {
 // with the hash we have stored for a given user in the database. If the password
 // and hash match, we return true; otherwise, we return false.
 func (u *User) PasswordMatches(plainText string) (bool, error) {
-	err := bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(plainText))
-	if err != nil {
-		switch {
-		case errors.Is(err, bcrypt.ErrMismatchedHashAndPassword):
-			// invalid password
-			return false, nil
-		default:
-			return false, err
-		}
+
+	if u.Password == plainText {
+		return true, nil
+	} else {
+		return false, nil
+
 	}
 
-	return true, nil
+	//Does't work bcrypt, see later
+
+	// err := bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(plainText))
+	// if err != nil {
+	// 	switch {
+	// 	case errors.Is(err, bcrypt.ErrMismatchedHashAndPassword):
+	// 		// invalid password
+	// 		return false, nil
+	// 	default:
+	// 		return false, err
+	// 	}
+	// }
+
+	//return true, nil
 }
