@@ -51,11 +51,21 @@ func main() {
 	app := Config{
 		Models: data.New(client),
 	}
+
+	// start web server
+	go app.serve()
+
 }
 
 func (app *Config) serve() {
 	srv := &http.Server{
-		Addr: fmt.Sprint(":%s", webPort),
+		Addr:    fmt.Sprint(":%s", webPort),
+		Handler: app.routes(),
+	}
+
+	err := srv.ListenAndServe()
+	if err != nil {
+		log.Panic(err)
 	}
 }
 
