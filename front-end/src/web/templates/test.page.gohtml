@@ -19,7 +19,11 @@
     <div class="col">
       <div class="d-flex flex-column">
         <a id="authBrokenButton" class="btn btn-secondary mb-2" href="javascript:void(0);">Test Auth</a>
-        <a id="authBrokenButton" class="btn btn-secondary" href="javascript:void(0);">Test Auth</a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="d-flex flex-column">
+        <a id="logBtn" class="btn btn-secondary mb-2" href="javascript:void(0);">Test Logger</a>
       </div>
     </div>
   </div>
@@ -53,12 +57,51 @@
 <script>
     let brokerBtn = document.getElementById("brokerBtn");
     let brokerBtnPing = document.getElementById("brokerBtnPing");
-
     let authBrokenButton = document.getElementById("authBrokenButton");
+    let logBtn = document.getElementById("logBtn");
+
+
 
     let output = document.getElementById("output");
     let sent = document.getElementById("payload");
     let received = document.getElementById("received");
+
+
+    logBtn.addEventListener("click", function() {
+        const payload = {
+            action: "log"
+            log: {
+                name: "event",
+                data: "Some kind of data",
+            }
+        }
+
+        const headers = new Headers();
+        headers.append("content-type", "application/json");
+
+        const body = {
+            method: "POST",
+            body: JSON.stringify(payload),
+            headers: headers,
+        }
+
+
+        fetch("http://localhost:8080/handle", body)
+            .then((response) => response.json())
+            .then((data) => {
+                sent.innerHTML = "Empty post request";
+                received.innerHTML = JSON.stringify(data, undefined, 4);
+                if(data.error) {
+                    console.log(data.message);
+                }else{
+                    output.innerHTML += `<br><strong>Response from broker service</strong>: ${data.message}`;
+                }
+            })
+        .catch((error) => {
+            output.innerHTML += "<br><br>Error: " + error;
+        })
+
+    })
 
     brokerBtn.addEventListener("click", function(){ 
         const body = {
