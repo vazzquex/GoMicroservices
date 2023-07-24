@@ -1,7 +1,9 @@
 /project/db-data/postgres
 /project/db-data/mongo
+/test
 
 auth-service/authApp
 broker-service/brokerApp
 front-end/frontApp
 logger-service/loggerApp
+

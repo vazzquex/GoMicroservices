@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+
 	"time"
 
 	_ "github.com/jackc/pgconn"
@@ -87,5 +88,4 @@ func connectDB() *sql.DB {
 		continue
 
 	}
-
 }

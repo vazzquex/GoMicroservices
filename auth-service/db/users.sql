@@ -53,7 +53,7 @@ ALTER TABLE ONLY public.users
 
 INSERT INTO "public"."users"("email","first_name","last_name","password","user_active","created_at","updated_at")
 VALUES
-(E'admin@example.com',E'Admin',E'User',E'verysecret',1,E'2022-03-14 00:00:00',E'2022-03-14 00:00:00');
+(E'admin@example.com',E'Admin',E'User',E'verysecret',1,E'2023-07-21 00:00:00',E'2022-07-24 00:00:00');
 
 
 
