@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-
 	"time"
 
 	_ "github.com/jackc/pgconn"
@@ -26,6 +25,7 @@ type Config struct {
 
 func main() {
 	log.Println("Starting auth service...")
+	data.InsertData()
 
 	//conection to db
 	conn := connectDB()
@@ -88,4 +88,5 @@ func connectDB() *sql.DB {
 		continue
 
 	}
+
 }

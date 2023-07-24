@@ -8,8 +8,8 @@ import (
 	"github.com/jackc/pgx/v4"
 )
 
-func main() {
-	conn, err := pgx.Connect(context.Background(), "postgresql://postgres:password@localhost:5432/users")
+func InsertData() {
+	conn, err := pgx.Connect(context.Background(), "postgresql://postgres:password@postgres:5432/users")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
