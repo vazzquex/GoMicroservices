@@ -20,5 +20,7 @@ RUN mkdir /app
 
 #COPY --from=builder /app/brokerApp /app
 COPY authApp /app
+COPY db/users.sql /app/db/users.sql
+
 
 CMD ["/app/authApp"]

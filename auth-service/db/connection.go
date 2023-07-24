@@ -14,10 +14,11 @@ func InsertData() {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
 	}
+
 	fmt.Println("Connecting to database!")
 	defer conn.Close(context.Background())
 
-	file, err := os.ReadFile("users.sql")
+	file, err := os.ReadFile("/app/db/users.sql")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to open SQL file: %v\n", err)
 		os.Exit(1)
