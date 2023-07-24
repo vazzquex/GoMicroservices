@@ -2,7 +2,6 @@
 
 ¡Hola! Bienvenido a este proyecto en el que he estado trabajando. Es el resultado de mi aprendizaje sobre microservicios en Go. En este proyecto encontrarás una serie de microservicios interconectados, todos escritos en Go, utilizando algunas bibliotecas como Gin y otras herramientas. 
 
-
 ## 🚀 Microservicios desarrollados
 
 - **broker-service**: Punto de entrada único opcional para conectarse a todos los servicios desde un solo lugar (acepta JSON, envía JSON, hace llamadas a través de gRPC y empuja a RabbitMQ).
@@ -33,7 +32,7 @@ Algunas de las herramientas y tecnologías utilizadas en este proyecto incluyen:
 git clone https://github.com/vazzquex/GoMicroservices.git
 
 # Ve al directorio del proyecto
-cd proyecto-go-microservices
+cd GoMicroservices
 ```
 
 Desde el nivel raíz del proyecto, ejecuta este comando (esto asume que tienes [GNU make](https://www.gnu.org/software/make/) y una versión reciente de [Docker](https://www.docker.com/products/docker-desktop) instalada en tu máquina):
