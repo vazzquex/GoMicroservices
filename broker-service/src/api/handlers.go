@@ -70,19 +70,21 @@ func (app *Config) logItem(w http.ResponseWriter, entry LogPayload) {
 		return
 	}
 
-	request.Header.Set("Contect-Type", "aplication/json")
+	request.Header.Set("Content-Type", "application/json")
 	client := &http.Client{}
 
 	respose, err := client.Do(request)
-
 	if err != nil {
 		app.errorJSON(w, err)
 		return
 	}
-
 	defer respose.Body.Close()
 
+	//respose.StatusCode != http.StatusAccepted
 	if respose.StatusCode != http.StatusAccepted {
+		bodyBytes, _ := ioutil.ReadAll(respose.Body)
+		bodyString := string(bodyBytes)
+		err = fmt.Errorf("received status code %d: %s", respose.StatusCode, bodyString)
 		app.errorJSON(w, err)
 		return
 	}

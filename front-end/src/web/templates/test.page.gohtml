@@ -77,7 +77,7 @@
         }
 
         const headers = new Headers();
-        headers.append("content-type", "application/json");
+        headers.append("Content-Type", "application/json");
 
         const body = {
             method: "POST",
@@ -87,19 +87,29 @@
 
 
         fetch("http://localhost:8080/handle", body)
-            .then((response) => response.json())
+            .then((response) => {
+                if (!response.ok && response.status !== 202) {
+                    console.log(response)
+                    return response.json();
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
             .then((data) => {
-                sent.innerHTML = "empty post request";
+                sent.innerHTML = JSON.stringify(payload, undefined, 4);
                 received.innerHTML = JSON.stringify(data, undefined, 4);
                 if(data.error) {
-                    console.log(data.message);
+                    output.innerHTML += `
+                    <br><strong>Error: </strong> ${data.message}
+                    `;
                 }else{
-                    output.innerHTML += `<br><strong>Response from broker service</strong>: ${data.message}`;
+                    output.innerHTML += `<br><strong>Response from Authentication broker service</strong>: ${data.message}`;
                 }
             })
-        .catch((error) => {
-            output.innerHTML += "<br><br>Error: " + error;
-        })
+            .catch((error) => {
+                output.innerHTML += "<br><br>Error: " + error;
+            });
+
 
     })
 
