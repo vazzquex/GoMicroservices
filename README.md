@@ -35,7 +35,7 @@ git clone https://github.com/vazzquex/GoMicroservices.git
 cd GoMicroservices
 ```
 
-Desde el nivel raíz del proyecto, ejecuta este comando (esto asume que tienes [GNU make](https://www.gnu.org/software/make/) y una versión reciente de [Docker](https://www.docker.com/products/docker-desktop) instalada en tu máquina):
+Desde el nivel raíz del proyecto, ejecuta este comando (esto asume que tienes [GNU make](https://www.gnu.org/software/make/) y una versión reciente de [Docker](https://www.docker.com/products/docker-desktop), [Docker-Compose](https://docs.docker.com/compose/)  instalada en tu máquina):
 
 ```shell
 make up_build
