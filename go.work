@@ -5,5 +5,4 @@ use (
 	./front-end
 	./auth-service
 	./logger-service
-	./test
 )
