@@ -22,6 +22,7 @@ Algunas de las herramientas y tecnologías utilizadas en este proyecto incluyen:
 - **RabbitMQ:** Mensajería de cola utilizada para manejar la comunicación entre los servicios.
 - **Gin:** Marco de trabajo web HTTP de alto rendimiento utilizado en varias partes del proyecto.
 - **gRPC-go:** Marco de trabajo utilizado para implementar la comunicación entre los servicios.
+- **Mailhog:** utilizado como un servidor de correo falso para trabajar con el servicio de correo.
 - **etcd:** Sistema de almacenamiento de clave-valor utilizado para el descubrimiento y configuración de servicios.
 - **MongoDB:** Base de datos NoSQL utilizada para almacenar los registros de los eventos importantes.
 
@@ -35,7 +36,7 @@ git clone https://github.com/vazzquex/GoMicroservices.git
 cd GoMicroservices
 ```
 
-Desde el nivel raíz del proyecto, ejecuta este comando (esto asume que tienes [GNU make](https://www.gnu.org/software/make/) y una versión reciente de [Docker](https://www.docker.com/products/docker-desktop) instalada en tu máquina):
+Desde el nivel raíz del proyecto, ejecuta este comando (esto asume que tienes [GNU make](https://www.gnu.org/software/make/) y una versión reciente de [Docker](https://www.docker.com/products/docker-desktop), [Docker-Compose](https://docs.docker.com/compose/)  instalada en tu sistema):
 
 ```shell
 make up_build
